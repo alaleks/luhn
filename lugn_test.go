@@ -6,6 +6,8 @@ import (
 	"github.com/alaleks/luhn"
 )
 
+const num = 10000
+
 func TestValid(t *testing.T) {
 	luhnNumber := 79927398713
 	check := luhn.Valid(luhnNumber)
@@ -16,7 +18,7 @@ func TestValid(t *testing.T) {
 }
 
 func TestGenerateEven(t *testing.T) {
-	for i := 1; i < 10001; i++ {
+	for i := 0; i < num; i++ {
 		if l := luhn.Generate(12); !luhn.Valid(l) {
 			t.Errorf("a number was received that does not match the Luhn algorithm: %d", l)
 		}
@@ -24,9 +26,15 @@ func TestGenerateEven(t *testing.T) {
 }
 
 func TestGenerateOdd(t *testing.T) {
-	for i := 1; i < 10001; i++ {
+	for i := 0; i < num; i++ {
 		if l := luhn.Generate(11); !luhn.Valid(l) {
 			t.Errorf("a number was received that does not match the Luhn algorithm: %d", l)
 		}
+	}
+}
+
+func BenchmarkGenerateLuhn(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		luhn.Generate(12)
 	}
 }
