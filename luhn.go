@@ -22,7 +22,7 @@ func Generate(n int) int {
 
 	for i := range numbers {
 		rand.Seed(time.Now().UnixNano())
-		numbers[i] = rand.Intn(9) + 1
+		numbers[i] = rand.Intn(10)
 
 		if count%2 != 0 {
 			luhn += numbers[i]

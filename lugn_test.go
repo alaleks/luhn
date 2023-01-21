@@ -33,8 +33,20 @@ func TestGenerateOdd(t *testing.T) {
 	}
 }
 
-func BenchmarkGenerateLuhn(b *testing.B) {
+func BenchmarkGenerateLuhn8(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		luhn.Generate(8)
+	}
+}
+
+func BenchmarkGenerateLuhn12(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		luhn.Generate(12)
+	}
+}
+
+func BenchmarkGenerateLuhn16(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		luhn.Generate(16)
 	}
 }
